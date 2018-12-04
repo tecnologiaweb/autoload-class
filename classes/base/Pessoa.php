@@ -4,7 +4,7 @@
  *
  * @author henriqueoliveira
  */
-class Pessoa {
+class Pessoa extends Util{
     
     private $documento;
     private $nome;
