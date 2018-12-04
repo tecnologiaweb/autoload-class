@@ -2,9 +2,16 @@
 
 function __autoload($classe){
     $classe.=".php";
-    if(file_exists("classes".DIRECTORY_SEPARATOR.$classe)){
-        include_once "classes".DIRECTORY_SEPARATOR.$classe;	
+    $diretorioBase="classes";
+    $interator=new RecursiveIteratorIterator(new RecursiveDirectoryIterator($diretorioBase));
+    foreach ($interator as $elemento){
+        if(strpos($elemento,$classe)!==FALSE){
+            if(file_exists($elemento)){
+                include_once $elemento;	
+            }
+        }
     }
+    unset($elemento,$interator,$diretorioBase);
 }
 
 $objHomem=new Homem();
